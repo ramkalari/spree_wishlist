@@ -12,20 +12,25 @@ class Spree::WishedProductsController < Spree::Api::V1::BaseController
       @wished_product.save
     end
 
-    respond_with(@wished_product)
+    redirect_to :controller => 'wishlist', :action => 'show', :id => @wishlist.access_hash
+
   end
 
   def update
     @wished_product = Spree::WishedProduct.find(params[:id])
     @wished_product.update_attributes(params[:wished_product])
 
-    respond_with(@wished_product)
+    respond_with(@wished_product) do |format|
+    	redirect_to wishlist_url(@wished_product.wishlist)
+    end
   end
 
   def destroy
     @wished_product = Spree::WishedProduct.find(params[:id])
     @wished_product.destroy
 
-    respond_with(@wished_product)
+    respond_with(@wished_product) do |format|
+       redirect_to wishlist_url(@wished_product.wishlist)
+    end
   end
 end
