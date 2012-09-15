@@ -11,7 +11,7 @@ class Spree::WishlistsController < Spree::Api::V1::BaseController
   end
 
   def index
-    @wishlists = current_user.wishlists
+    @wishlists = current_api_user.wishlists
 
     respond_with(@wishlist)
   end
@@ -36,7 +36,7 @@ class Spree::WishlistsController < Spree::Api::V1::BaseController
   end
   
   def default
-    @wishlist = current_user.wishlist
+    @wishlist = current_api_user.wishlist
     
     respond_with(@wishlist)do |format|
       format.html { render 'show' }
@@ -45,7 +45,7 @@ class Spree::WishlistsController < Spree::Api::V1::BaseController
   
   def create
     @wishlist = Spree::Wishlist.new(params[:wishlist])
-    @wishlist.user = current_user
+    @wishlist.user = current_api_user
 
     @wishlist.save
     respond_with(@wishlist)
