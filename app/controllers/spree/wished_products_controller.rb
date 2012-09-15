@@ -1,20 +1,5 @@
 class Spree::WishedProductsController < Spree::Api::V1::BaseController
 
-   include ActionController::Helpers
-   include ActionController::Redirecting
-   include ActionController::Rendering
-   include ActionController::Renderers::All
-   include ActionController::ConditionalGet
-   include ActionController::MimeResponds
-   include ActionController::RequestForgeryProtection
-   include ActionController::ForceSSL
-   include AbstractController::Callbacks
-   include ActionController::Instrumentation
-   include ActionController::ParamsWrapper
-   include Devise::Controllers::Helpers
-   include Rails.application.routes.url_helpers
-    
-  append_view_path "#{Rails.root}/app/views"
   respond_to :html, :json
 
   def create
@@ -27,26 +12,22 @@ class Spree::WishedProductsController < Spree::Api::V1::BaseController
       @wished_product.wishlist = current_api_user.wishlist
       @wished_product.save
     end
-
-    redirect_to @wishlist
+    
+    respond_with(@wished_product)
 
   end
 
   def update
     @wished_product = Spree::WishedProduct.find(params[:id])
     @wished_product.update_attributes(params[:wished_product])
-
-    respond_with(@wished_product) do |format|
-    	redirect_to wishlist_url(@wished_product.wishlist)
-    end
+    
+    respond_with(@wished_product)
   end
 
   def destroy
     @wished_product = Spree::WishedProduct.find(params[:id])
     @wished_product.destroy
 
-    respond_with(@wished_product) do |format|
-       redirect_to wishlist_url(@wished_product.wishlist)
-    end
+    respond_with(@wished_product)
   end
 end
