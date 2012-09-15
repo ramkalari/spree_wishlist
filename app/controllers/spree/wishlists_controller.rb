@@ -1,4 +1,4 @@
-class Spree::WishlistsController < Spree::BaseController
+class Spree::WishlistsController < Spree::Api::V1::BaseController
   helper 'spree/products'
 
   respond_to :html, :json, :js
