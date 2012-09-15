@@ -1,6 +1,20 @@
 class Spree::WishedProductsController < Spree::Api::V1::BaseController
-  include ActionController::Redirecting
-  include Rails.application.routes.url_helpers
+
+   include ActionController::Helpers
+   include ActionController::Redirecting
+   include ActionController::Rendering
+   include ActionController::Renderers::All
+   include ActionController::ConditionalGet
+   include ActionController::MimeResponds
+   include ActionController::RequestForgeryProtection
+   include ActionController::ForceSSL
+   include AbstractController::Callbacks
+   include ActionController::Instrumentation
+   include ActionController::ParamsWrapper
+   include Devise::Controllers::Helpers
+   include Rails.application.routes.url_helpers
+    
+  append_view_path "#{Rails.root}/app/views"
   respond_to :html, :json
 
   def create
