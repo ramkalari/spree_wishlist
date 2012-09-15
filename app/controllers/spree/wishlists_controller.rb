@@ -1,8 +1,8 @@
 class Spree::WishlistsController < Spree::BaseController
   helper 'spree/products'
 
-  respond_to :html
-  respond_to :js, :only => [:update]
+  respond_to :html, :json, :js
+  #respond_to :js, :only => [:update]
 
   def new
     @wishlist = Spree::Wishlist.new
