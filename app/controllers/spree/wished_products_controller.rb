@@ -1,4 +1,7 @@
 class Spree::WishedProductsController < Spree::Api::V1::BaseController
+  include ActionController::Redirecting
+  include Rails.application.routes.url_helpers
+  
   respond_to :html, :json
 
   def create
