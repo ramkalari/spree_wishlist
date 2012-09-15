@@ -1,6 +1,9 @@
 class Spree::WishedProductsController < Spree::Api::V1::BaseController
+  
   include ActionController::Redirecting
   include Rails.application.routes.url_helpers
+  include Spree::Core::ControllerHelpers
+  include Spree::Core::RespondWith
   
   respond_to :html, :json
 
@@ -15,7 +18,7 @@ class Spree::WishedProductsController < Spree::Api::V1::BaseController
       @wished_product.save
     end
 
-    redirect_to :controller => 'wishlist', :action => 'show', :id => @wishlist.access_hash
+    redirect_to wishlist_url(@wished_product.wishlist)
 
   end
 
