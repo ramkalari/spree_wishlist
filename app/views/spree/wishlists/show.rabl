@@ -1,2 +1,3 @@
 object @wishlist
-attributes *wishlist_attributes
+attributes :id, :name, :is_default, :is_private
+

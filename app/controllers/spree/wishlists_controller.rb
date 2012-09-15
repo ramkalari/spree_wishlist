@@ -13,7 +13,7 @@ class Spree::WishlistsController < Spree::Api::V1::BaseController
   def index
     @wishlists = current_api_user.wishlists
 
-    respond_with(@wishlist)
+    respond_with(@wishlists)
   end
   
   def edit

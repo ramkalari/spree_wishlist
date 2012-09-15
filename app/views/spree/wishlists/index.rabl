@@ -1,2 +1,2 @@
-object @wishlist
-attributes *wishlist_attributes
+collection @wishlists
+extends "wishlists/show"
