@@ -1,2 +1,2 @@
 collection @wishlists
-extends "wishlists/show"
+attributes  :name, :is_default, :is_private
