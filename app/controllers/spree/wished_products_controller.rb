@@ -28,6 +28,10 @@ class Spree::WishedProductsController < Spree::Api::V1::BaseController
     @wished_product = Spree::WishedProduct.find(params[:id])
     @wished_product.destroy
 
-    respond_with(@wished_product)
+      respond_to do |format|
+          format.html # some.html.erb
+          format.json  { render :json => {:status => :ok, :message => "Product removed from wishlist"}.to_json }
+      end
+
   end
 end
