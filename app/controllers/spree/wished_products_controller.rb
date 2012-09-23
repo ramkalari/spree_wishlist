@@ -1,6 +1,6 @@
 class Spree::WishedProductsController < Spree::Api::V1::BaseController
 
-  respond_to :html, :json, :except => [:destroy]
+  respond_to :html, :json
 
   def create
     @wished_product = Spree::WishedProduct.new(params[:wished_product])
@@ -27,5 +27,6 @@ class Spree::WishedProductsController < Spree::Api::V1::BaseController
   def destroy
     @wished_product = Spree::WishedProduct.find(params[:id])
     @wished_product.destroy
+    respond_with(@wished_product)
   end
 end
